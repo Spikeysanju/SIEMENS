@@ -61,9 +61,7 @@ import java.util.List;
 import static com.itextpdf.text.PageSize.A4;
 
 public class MainActivity extends AppCompatActivity {
-    Bitmap bm;
-    Image img;
-    BitmapDrawable bitmapDrawable;
+
     ProgressDialog pd;
     private Button btn;
     int PICK_IMAGE_MULTIPLE = 1;
@@ -140,10 +138,7 @@ public class MainActivity extends AppCompatActivity {
                     PdfWriter.getInstance(document,new FileOutputStream(DEST));
                     document.open();
 
-                    addMetaData(document);
                     addTitlePage(document);
-
-
                     document.close();
 
                     Snackbar.make(view, "Created PDF", Snackbar.LENGTH_LONG)
@@ -156,10 +151,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
 
 
     }
@@ -249,19 +240,6 @@ public class MainActivity extends AppCompatActivity {
         document.newPage();
     }
 
-    private void addMetaData(Document document) throws DocumentException {
-
-        document.addCreationDate();
-        document.addTitle("SIEMENS");
-        document.addAuthor("Steve Jobs");
-        document.addCreator("Sanju S");
-        document.addKeywords("Engineering, Automation, Machine Learning");
-
-        document.newPage();
-
-
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -373,6 +351,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    //Save current grid view
     private File saveBitMap(Context context, View drawView){
         File pictureFileDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"SiemensImages");
         if (!pictureFileDir.exists()) {
@@ -397,46 +376,6 @@ public class MainActivity extends AppCompatActivity {
 
             File myDir = new File(root + "/siemensPDF");
             myDir.mkdir();
-
-
-            try {
-                PdfWriter.getInstance(document,new FileOutputStream(DEST));
-                document.open();
-
-                addMetaData(document);
-                addTitlePage(document);
-
-
-                // get input stream
-
-                ByteArrayOutputStream strm = new ByteArrayOutputStream();
-                ByteArrayInputStream inputStream = new ByteArrayInputStream(strm.toByteArray());
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, strm);
-                Image image1 = Image.getInstance(strm.toByteArray());
-                image1.scaleToFit(150, 150);
-                image1.setSpacingAfter(30f);
-
-
-                document.close();
-
-                Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
-
-
-
-        } catch (DocumentException | IOException e) {
-
-                Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();               }
-
-
-
-
-
-
-
-
-
-
-
 
             oStream.flush();
             oStream.close();
