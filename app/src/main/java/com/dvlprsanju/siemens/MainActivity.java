@@ -87,6 +87,8 @@ public class MainActivity extends AppCompatActivity {
         btn = findViewById(R.id.btn);
         gvGallery = (GridView)findViewById(R.id.gv);
 
+        // select multiple image from gallery
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,6 +102,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         FloatingActionButton fab = findViewById(R.id.fab);
+
+
+        // Saving the image of Gallery adapter Card view
 
         fab.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -120,6 +125,10 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+
+        // Generate PDF every time when clicking
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -145,8 +154,11 @@ public class MainActivity extends AppCompatActivity {
                             .setAction("Action", null).show();
 
                 } catch (DocumentException | IOException e) {
+
                     Snackbar.make(view, "Error Occured", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();                }
+                            .setAction("Action", null).show();
+
+                }
 
 
             }
@@ -156,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+// fuction to create pdf
 
     private void addTitlePage(Document document) throws DocumentException, IOException {
 
